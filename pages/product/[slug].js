@@ -48,7 +48,7 @@ export default function Product() {
               push("/cart");
             }}
           >
-            Add to bag
+            <span>Add to bag</span>
           </button>
         </div>
       </div>

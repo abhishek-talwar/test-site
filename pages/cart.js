@@ -38,7 +38,7 @@ export default function Cart() {
             </p>
             <p style={{ color: "var(--muted)", fontSize: 13 }}>Taxes included. Shipping calculated at checkout.</p>
             <Link className="btn" href="/checkout">
-              Check out
+              <span>Check out</span>
             </Link>
           </>
         )}

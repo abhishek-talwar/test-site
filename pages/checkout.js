@@ -82,7 +82,7 @@ export default function Checkout() {
           ))}
           {err && <p style={{ color: "crimson" }}>{err}</p>}
           <button className="btn" style={{ marginTop: 16 }} type="submit">
-            Pay {money(total)}
+            <span>Pay {money(total)}</span>
           </button>
         </form>
         <aside className="panel">

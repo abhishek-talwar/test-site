@@ -9,66 +9,99 @@ export default function Home() {
   useEffect(() => {
     fetch("/api/bootstrap")
       .then((r) => r.json())
-      .then((d) => setProducts(d.products.filter((p) => p.featured)));
+      .then((d) => setProducts(d.products));
   }, []);
+  const drop = products.filter((p) => p.featured);
 
   return (
     <>
       <StoreNav count={cart.count} />
-      <section className="hero-full">
-        <img src="/hero.jpg" alt="" />
-        <div className="overlay">
-          <div className="kicker">Winter drop 2025</div>
-          <h1>BLUORNG</h1>
-          <p>Street style comfort. Top-drawer clothing. An extension of your expression.</p>
+      <section className="hero-mash">
+        <div className="shot">
+          <img src="/hero.jpg" alt="" />
+          <div className="stamp">
+            pronounced
+            <br />
+            blue~orange
+            <br />
+            est. 2019
+          </div>
+        </div>
+        <div className="hero-copy">
+          <div className="tag">// streetwear from Delhi, not a template</div>
+          <h1>
+            <span className="b">BLU</span>
+            <br />
+            <span className="o">ORNG</span>
+          </h1>
+          <p>
+            Loud graphics. Heavy gsm. Fits that hang off the shoulder like you meant it. This is not
+            another beige catalog — it’s a drop.
+          </p>
           <div className="hero-cta">
             <Link className="btn" href="/shop">
-              Shop now
+              <span>Enter the drop</span>
             </Link>
-            <Link className="btn ghost" href="/shop?cat=hoodies" style={{ color: "#111" }}>
-              Hoodies
+            <Link className="btn ghost" href="/shop?cat=hoodies">
+              <span>Wildloom hoodies</span>
             </Link>
+          </div>
+          <div className="stats-row">
+            <div>
+              <b>400</b>gsm french terry
+            </div>
+            <div>
+              <b>07</b>live styles
+            </div>
+            <div>
+              <b>COD</b>+ Razorpay
+            </div>
           </div>
         </div>
       </section>
 
-      <div className="wrap">
-        <div className="tiles">
-          {[
-            ["/products/cap.jpg", "New caps", "/shop?cat=caps"],
-            ["/products/polo.jpg", "Polo season", "/shop?cat=polos"],
-            ["/products/tee-black.jpg", "Black grid", "/shop?cat=t-shirts"],
-            ["/products/hoodie-black.jpg", "Winter", "/shop?cat=hoodies"],
-          ].map(([img, t, href]) => (
-            <Link key={t} href={href} className="tile">
-              <img src={img} alt="" />
-              <span>{t}</span>
-            </Link>
-          ))}
-        </div>
-      </div>
-
-      <div className="marquee" aria-hidden>
-        <div className="marquee-track">
-          <span>BLUORNG · T-SHIRTS · HOODIES · BOTTOMS · CAPS · RAZORPAY · COD · FREE OVER ₹4999 · BLUORNG · T-SHIRTS · HOODIES · BOTTOMS · CAPS · </span>
-          <span>BLUORNG · T-SHIRTS · HOODIES · BOTTOMS · CAPS · RAZORPAY · COD · FREE OVER ₹4999 · </span>
-        </div>
+      <div className="ticker" aria-hidden>
+        <span>NO BORING BASICS — ONLY GRAPHICS THAT ARGUE — HEAVYWEIGHT ONLY — DELHI NIGHT SHIFT — </span>
+        <span>NO BORING BASICS — ONLY GRAPHICS THAT ARGUE — HEAVYWEIGHT ONLY — DELHI NIGHT SHIFT — </span>
       </div>
 
       <section className="section wrap">
-        <div className="section-head">
-          <div>
-            <div className="kicker">Latest drop</div>
-            <h2 className="display">New in</h2>
-          </div>
-          <Link href="/shop">Discover more</Link>
+        <div className="kicker">Rooms in the house</div>
+        <h2 className="display">Pick a lane.</h2>
+        <div className="mosaic">
+          <Link href="/shop?cat=hoodies" className="tile">
+            <img src="/products/hoodie-black.jpg" alt="" />
+            <i>Hoodies</i>
+          </Link>
+          <Link href="/shop?cat=t-shirts" className="tile">
+            <img src="/products/tee-black.jpg" alt="" />
+            <i>Tees</i>
+          </Link>
+          <Link href="/shop?cat=caps" className="tile">
+            <img src="/products/cap.jpg" alt="" />
+            <i>Caps</i>
+          </Link>
+          <Link href="/shop?cat=polos" className="tile">
+            <img src="/products/polo.jpg" alt="" />
+            <i>Polos</i>
+          </Link>
+          <Link href="/shop?cat=bottoms" className="tile">
+            <img src="/products/cargo.jpg" alt="" />
+            <i>Cargos</i>
+          </Link>
         </div>
-        <div className="grid">
-          {products.map((p) => (
+      </section>
+
+      <section className="section wrap">
+        <div className="kicker">Latest drop — scroll it</div>
+        <h2 className="display">Don’t browse. Raid.</h2>
+        <div className="rail">
+          {drop.map((p) => (
             <Link key={p.id} href={`/product/${p.slug}`} className="card">
               <div className="media">
                 <img src={p.image} alt="" />
               </div>
+              <div className="quick">ADD</div>
               <div className="body">
                 <h3>{p.name}</h3>
                 <span className="price">{money(p.price)}</span>
@@ -79,15 +112,44 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="foot wrap">
-        <b className="logo" style={{ fontSize: 18 }}>
-          BLUORNG
-        </b>
+      <section className="slash">
+        <h2>
+          Blue
+          <br />
+          meets
+          <br />
+          orange.
+        </h2>
         <div>
-          <Link href="/shop">Shop</Link>
+          <p>
+            Named for the clash — cold navy, hot rust. Every piece is cut oversized, printed in-house
+            energy, shipped pan-India with live carrier quotes and COD if that’s how you move.
+          </p>
+          <Link className="btn" href="/shop" style={{ marginTop: 18 }}>
+            <span>Shop the clash</span>
+          </Link>
+        </div>
+      </section>
+
+      <footer className="foot wrap">
+        <div>
+          <div className="big">
+            BLU
+            <br />
+            ORNG
+          </div>
+          <p>An extension of your expression. Not a theme.</p>
+        </div>
+        <div>
+          <Link href="/shop">All product</Link>
+          <Link href="/shop?cat=hoodies">Hoodies</Link>
+          <Link href="/shop?cat=t-shirts">T-shirts</Link>
           <Link href="/cart">Bag</Link>
         </div>
-        <small>© {new Date().getFullYear()} Bluorng. Pronounced “Blue~Orange”.</small>
+        <div>
+          <p>GST in. Free over ₹4,999.</p>
+          <p>Staff door is not on this site.</p>
+        </div>
       </footer>
     </>
   );
