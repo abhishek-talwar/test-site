@@ -20,7 +20,7 @@ export default function handler(req, res) {
       categoryId: p.categoryId || "",
       featured: !!p.featured,
       status: p.status || "active",
-      image: p.image || "/products/vessel.svg",
+      image: p.image || "/products/tee-grey.jpg",
       description: p.description || "",
     };
     mutate((db) => db.products.push(product));

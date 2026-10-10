@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import AdminShell from "../../components/AdminShell";
 
 export default function Login() {
-  const [email, setEmail] = useState("admin@lumen.store");
+  const [email, setEmail] = useState("admin@bluorng.com");
   const [password, setPassword] = useState("admin123");
   const [err, setErr] = useState("");
   const router = useRouter();
@@ -16,7 +16,7 @@ export default function Login() {
     });
     const d = await r.json();
     if (!r.ok) return setErr(d.error);
-    localStorage.setItem("lumen-admin", d.token);
+    localStorage.setItem("blu-admin", d.token);
     router.push("/admin");
   }
   return (
@@ -34,7 +34,7 @@ export default function Login() {
               Sign in
             </button>
           </form>
-          <p style={{ color: "var(--muted)", fontSize: 13 }}>Demo: admin@lumen.store / admin123</p>
+          <p style={{ color: "var(--muted)", fontSize: 13 }}>Staff only.</p>
         </div>
       </div>
     </AdminShell>

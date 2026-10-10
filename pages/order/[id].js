@@ -17,7 +17,7 @@ export default function Order() {
       <StoreNav />
       <div className="wrap section">
         <div className="kicker">Confirmation</div>
-        <h1 style={{ fontFamily: "var(--serif)", fontWeight: 500 }}>Order {order.number}</h1>
+        <h1 className="display">Order {order.number}</h1>
         <p>
           Paid via {order.payment.provider} · {order.status}
         </p>

@@ -5,7 +5,7 @@ export default function handler(req, res) {
   const { email, password } = req.body || {};
   const a = load().admin;
   if (email === a.email && password === a.password) {
-    return res.json({ ok: true, token: "lumen-admin-demo" });
+    return res.json({ ok: true, token: "blu-admin-demo" });
   }
   res.status(401).json({ error: "Invalid credentials" });
 }

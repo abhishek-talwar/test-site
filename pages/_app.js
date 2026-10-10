@@ -2,18 +2,18 @@ import "../styles/globals.css";
 import { useEffect, useState } from "react";
 
 export const money = (n) =>
-  new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(n || 0);
+  new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR", maximumFractionDigits: 0 }).format(n || 0);
 
 export function useCart() {
   const [items, setItems] = useState([]);
   useEffect(() => {
     try {
-      setItems(JSON.parse(localStorage.getItem("lumen-cart") || "[]"));
+      setItems(JSON.parse(localStorage.getItem("blu-cart") || "[]"));
     } catch {}
   }, []);
   const persist = (next) => {
     setItems(next);
-    localStorage.setItem("lumen-cart", JSON.stringify(next));
+    localStorage.setItem("blu-cart", JSON.stringify(next));
   };
   return {
     items,

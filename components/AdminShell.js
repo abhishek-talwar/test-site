@@ -17,14 +17,14 @@ export default function AdminShell({ children }) {
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (pathname === "/admin/login") return;
-    if (localStorage.getItem("lumen-admin") !== "lumen-admin-demo") push("/admin/login");
+    if (localStorage.getItem("blu-admin") !== "blu-admin-demo") push("/admin/login");
   }, [pathname, push]);
   if (pathname === "/admin/login") return children;
   return (
     <div className="admin">
       <aside className="side">
         <div className="logo" style={{ color: "#fff", padding: "0 12px 24px" }}>
-          Lumen
+          BLUORNG
         </div>
         {links.map(([label, href]) => (
           <Link key={href} href={href} className={pathname === href ? "active" : ""}>

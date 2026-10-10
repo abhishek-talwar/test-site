@@ -10,7 +10,7 @@ export default function Checkout() {
   const [gateways, setGateways] = useState([]);
   const [shippingId, setShippingId] = useState("");
   const [paymentId, setPaymentId] = useState("");
-  const [form, setForm] = useState({ name: "", email: "", address: "", city: "", zip: "", country: "US" });
+  const [form, setForm] = useState({ name: "", email: "", address: "", city: "", zip: "", country: "IN" });
   const [err, setErr] = useState("");
   const sub = cart.items.reduce((a, b) => a + b.price * b.qty, 0);
 
@@ -37,9 +37,8 @@ export default function Checkout() {
 
   const ship = quotes.find((q) => q.id === shippingId);
   const gw = gateways.find((g) => g.id === paymentId);
-  const tax = Math.round(sub * 0.08 * 100) / 100;
   const fee = gw?.id === "cod" ? Number(gw.fee || 0) : 0;
-  const total = sub + (ship?.amount || 0) + tax + fee;
+  const total = sub + (ship?.amount || 0) + fee;
 
   async function place(e) {
     e.preventDefault();
@@ -67,7 +66,7 @@ export default function Checkout() {
               <input required value={form[k]} onChange={(e) => setForm({ ...form, [k]: e.target.value })} />
             </div>
           ))}
-          <h3>Shipping method</h3>
+          <h3>Shipping</h3>
           {quotes.map((q) => (
             <label key={q.id} className="toggle">
               <input type="radio" checked={shippingId === q.id} onChange={() => setShippingId(q.id)} />
@@ -95,11 +94,11 @@ export default function Checkout() {
           ))}
           <p>Subtotal {money(sub)}</p>
           <p>Shipping {money(ship?.amount)}</p>
-          <p>Tax {money(tax)}</p>
           {fee ? <p>COD fee {money(fee)}</p> : null}
           <p>
             <b>Total {money(total)}</b>
           </p>
+          <small>GST included in prices.</small>
         </aside>
       </div>
     </>
